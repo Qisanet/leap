@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leap Year and Sunday Checker</title>
+</head>
+<script>
+    function leep(event) {
+        event.preventDefault(); 
+        let year = document.getElementById("year").value; 
+        let result = document.getElementById("result-leap");
+       
+        if (Number(year) % 4 === 0) {
+            result.textContent = "This year is a leap year: " + year;
+        } else {
+            result.textContent = "This year is not a leap year: " + year;
+        }
+    }
+
+    function sunday(event) {
+        event.preventDefault(); 
+        let result = document.getElementById("result-sunday");
+        let resultText = ""; 
+        for (let year = 2014; year <= 2050; year++) {
+            let firstday = new Date(year, 0, 1); 
+            if (firstday.getDay() === 0) { 
+                resultText += "1st January is a Sunday in the year: " + year + "<br>";
+            }
+        }
+        result.innerHTML = resultText; 
+    }
+
+    function evenOdd() {
+        let result = document.getElementById("result-evOd");
+        let resultText = ""; 
+        for (let x = 0; x <= 15; x++) {
+            if (x % 2 === 0) {
+                resultText += "This number is Even: " + x + "<br>"; // Append result
+            } else {
+                resultText += "This number is Odd: " + x + "<br>"; // Append result
+            }
+        }
+        result.innerHTML = resultText; // Set the accumulated results to the result element
+    }
+    function checkPalindrome(event) {
+        event.preventDefault(); 
+           
+            let str = document.getElementById("inputString").value.toLowerCase();
+
+           
+            str = str.replace(/\s+/g, '');
+
+            
+            let reversedStr = str.split('').reverse().join('');
+
+            
+            if (str === reversedStr) {
+                document.getElementById("result").textContent = "The string is a palindrome.";
+            } else {
+                document.getElementById("result").textContent = "The string is not a palindrome.";
+            }
+        }
+
+</script>
+<body>
+    <form id="leap-form">
+        <h2>Is this a leap year?</h2>
+        <p>Enter the year you want to check: 
+            <input type="text" id="year">
+            <button onclick="leep(event)">Check</button>
+        </p>
+        <p id="result-leap"></p> 
+    </form>
+
+    <form id="sunday-form">
+        <h2>Check if 1st January is Sunday between 2014 and 2050</h2>
+        <button onclick="sunday(event)">Check It</button> 
+        <p id="result-sunday"></p> 
+    </form>
+
+    <form id="number-form">
+        <h2>This will check out the even and odd numbers between 0 and 15</h2>
+        <button onclick="evenOdd()">Check it</button>
+        <p id="result-evOd"></p>
+    </form>
+    <form>
+        <h2>Palindrome Checker</h2>
+        <p>Enter a string to check if it is palindrome: <input type="text" id="inputString">
+        <button onclick="checkPalindrome(event)">Check</button></p>
+        <p id="result"></p>
+    </form>
+
+</body>
+</html>
